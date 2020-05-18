@@ -13,11 +13,18 @@ def not_blank(error, question, no_num):
             if not no_num:
                 return response
             else:
-                if response.isdigit():
+                for i in response:
+                    if i.isdigit():
+                        fail = True
+                        break
+                if fail:
                     print(error)
-                    continue
+                    break
                 else:
                     return response
+
+name = not_blank("This response can not be blank or contain number", "What is your name? ", True)
+print(name)
 
 
 
