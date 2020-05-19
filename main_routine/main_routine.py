@@ -60,6 +60,38 @@ for i in items:
             print("Please enter a value in dollar.")
 print("here is the sub-total cost for your items (in dollars): ")
 print(sum_1)
+# This below will get the fixed-cost...
+fixed_cost = {}
+sum_2 = 0
+sum_2 = float(sum_2)
+print("Please tell us your fixed-costs, and enter 'xxx' to exit ")
+loop = True
+while loop:
+    fixed =(not_blank("Please enter a name ", "fixed-cost: ", True))
+    if fixed == "xxx":
+        if len(fixed) == 0:
+            sure = not_blank("This can't be blank", "Are you sure you do not have any fixed-cost? ", False)
+            if sure.lower() == "yes":
+                break
+            else:
+                continue
+        else:
+            break
+    else:
+        try:
+            price = float(not_blank("Please enter a number value", "Please tell us the price for " + fixed, False))
+            sum_2 += price
+            fixed_cost[fixed] = price
+        except ValueError:
+            print("Please enter a number value only")
+sum_3 = float(sum_1 + sum_2)
+print(sum_3)
+print("what is the profit you want to make")
+profit = input()
+
+
+
+
 
 
 
