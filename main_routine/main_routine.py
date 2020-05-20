@@ -87,7 +87,24 @@ while loop:
 sum_3 = float(sum_1 + sum_2)
 print(sum_3)
 print("what is the profit you want to make")
-profit = input()
+loop = True
+while loop:
+    profit = input("How much profit do you want to make? ")
+    if profit == "":
+        sure_1 = input("Are you sure u don't want to make any profit? ")
+        if sure_1.lower() == "yes":
+            profit = 0
+            break
+        else:
+            continue
+    elif profit.isdigit() and profit[-1] == "%":
+        percent = profit.pop[-1]
+        print(profit)
+
+
+
+
+
 
 
 
