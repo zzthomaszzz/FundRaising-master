@@ -4,7 +4,7 @@ from function.function_01_v2 import not_blank
 # Main routine goes here
 name = not_blank("This response can not be blank or contain number", "What is your name? ", True)
 print("Hi " + name)
-print("Please enter items that you would like to sell, if you would like to stop, please enter 'xxx'T")
+print("Please enter items that you would like to sell, if you would like to stop, please enter 'xxx' to exit")
 # set up the items list
 items = {}
 # set up a loop
@@ -35,7 +35,7 @@ for i in items:
             # Break the loop since we have got the quantity of the item
             break
         else:
-            # Error = Complain!
+            # Error = Complain
             print("Please enter a number value. ")
             continue
 sum_1 = 0
@@ -44,8 +44,8 @@ print("Please enter the cost for each item (in dollar)")
 for i in items:
     loop = True
     while loop:
-        cost = float(input("what is the cost for each " + i + " ? "))
         try:
+            cost = float(input("what is the cost for each " + i + " ? "))
             cost = float(cost)
             # cost_2 = variable that is the item in the items dictionary)
             cost_2 = items.get(i)
@@ -87,19 +87,40 @@ while loop:
 sum_3 = float(sum_1 + sum_2)
 print(sum_3)
 print("what is the profit you want to make")
+# this will check if the profit has 'percent' in it or not...
 loop = True
 while loop:
-    profit = input("How much profit do you want to make? ")
-    if profit == "":
+    question = input("How much profit do you want to make? ")
+    if question == "":
         sure_1 = input("Are you sure u don't want to make any profit? ")
         if sure_1.lower() == "yes":
             profit = 0
             break
         else:
             continue
-    elif profit.isdigit() and profit[-1] == "%":
-        percent = profit.pop[-1]
-        print(profit)
+            break
+    elif question[:-1].isdigit() and question[-1] == "%":
+        percent = True
+        profit = question[:-1]
+        break
+    elif question.isdigit():
+        percent = False
+        profit = question
+        break
+    else:
+        print("Please enter a valid answer")
+        continue
+if percent:
+    profit = float(profit)
+    profit /= 100
+    total_cost = sum_3 + sum_3*profit
+    print(profit)
+    print(total_cost)
+else:
+    profit = float(profit)
+    total_cost = profit + sum_3
+    print(profit)
+    print(total_cost)
 
 
 
