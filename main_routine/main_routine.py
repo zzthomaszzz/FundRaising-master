@@ -40,12 +40,12 @@ for i in items:
             continue
 sum_1 = 0
 sum_1 = float(sum_1)
-print("Please enter the cost for each item (in dollar)")
+print("Please enter the cost for each item (in dollar), and enter 'xxx' to exit ")
 for i in items:
     loop = True
     while loop:
         try:
-            cost = float(input("what is the cost for each " + i + " ? "))
+            cost = float(input("Cost for each " + i + ": "))
             cost = float(cost)
             # cost_2 = variable that is the item in the items dictionary)
             cost_2 = items.get(i)
@@ -69,8 +69,8 @@ loop = True
 while loop:
     fixed =(not_blank("Please enter a name ", "fixed-cost: ", True))
     if fixed == "xxx":
-        if len(fixed) == 0:
-            sure = not_blank("This can't be blank", "Are you sure you do not have any fixed-cost? ", False)
+        if len(fixed_cost) == 0:
+            sure = not_blank("Please answer this question","Are you sure you don't have any fixed cost? ", True)
             if sure.lower() == "yes":
                 break
             else:
@@ -78,15 +78,17 @@ while loop:
         else:
             break
     else:
-        try:
-            price = float(not_blank("Please enter a number value", "Please tell us the price for " + fixed, False))
-            sum_2 += price
-            fixed_cost[fixed] = price
-        except ValueError:
-            print("Please enter a number value only")
+        while loop:
+            try:
+                price = float(not_blank("Please enter a number value", "Please tell us the price for " + fixed, False))
+                sum_2 += price
+                fixed_cost[fixed] = price
+                break
+            except ValueError:
+                print("Please enter a number value only")
+
 sum_3 = float(sum_1 + sum_2)
 print(sum_3)
-print("what is the profit you want to make")
 # this will check if the profit has 'percent' in it or not...
 loop = True
 while loop:
@@ -116,11 +118,24 @@ if percent:
     total_cost = sum_3 + sum_3*profit
     print(profit)
     print(total_cost)
+    for i in items:
+        stuff = items.get(i)
+        stuff = float(stuff)
+        stuff += stuff * profit
+        items[i[o]] = stuff
 else:
     profit = float(profit)
     total_cost = profit + sum_3
     print(profit)
     print(total_cost)
+    for i in items:
+        stuff = items.get(i)
+        stuff = float(stuff)
+        stuff += profit
+        items[i[o]] = stuff
+print(items)
+
+
 
 
 
