@@ -2,16 +2,17 @@
 import math
 from function.function_01_v2 import not_blank
 # Main routine goes here
-name = not_blank("This response can not be blank or contain number", "What is your name? ", True)
-print("Hi " + name)
-print("Please enter items that you would like to sell, if you would like to stop, please enter 'xxx' to exit")
+name = not_blank("This response can not be blank or contain number", "Name: ", True)
+print("Hello " + name)
+print("Items to sell('xxx' to exit): ")
 # set up the items list
 items = {}
+items_cost = {}
 # set up a loop
 loop = True
 while loop:
     # set up an exit code called "xxx"
-    response = not_blank("this cant be blank", "Items: ", False)
+    response = not_blank("the item can't be blank or contain number", "Items: ", True)
     # check to see if the number of items is more than 0...
     if response == 'xxx':
         if len(items) > 0:
@@ -46,6 +47,7 @@ for i in items:
     while loop:
         try:
             cost = float(input("Cost for each " + i + ": "))
+            items_cost[i] = cost
             cost = float(cost)
             # cost_2 = variable that is the item in the items dictionary)
             cost_2 = items.get(i)
@@ -119,21 +121,22 @@ if percent:
     print(profit)
     print(total_cost)
     for i in items:
-        stuff = items.get(i)
+        stuff = items_cost.get(i)
         stuff = float(stuff)
         stuff += stuff * profit
-        items[i[o]] = stuff
+        items_cost[i] = stuff
 else:
     profit = float(profit)
     total_cost = profit + sum_3
     print(profit)
     print(total_cost)
     for i in items:
-        stuff = items.get(i)
+        stuff = items_cost.get(i)
         stuff = float(stuff)
         stuff += profit
-        items[i[o]] = stuff
+        items_cost[i] = stuff
 print(items)
+print(items_cost)
 
 
 
