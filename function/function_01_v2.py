@@ -22,3 +22,4 @@ def not_blank(error, question, no_num):
         # response can be anything...
         else:
             return response
+
